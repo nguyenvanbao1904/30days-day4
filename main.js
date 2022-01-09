@@ -14,9 +14,7 @@ images.forEach(function(img,index){
         show()
     })
 })
-if(imgIndex===8){
-    controlRight.className='hiden'
-}
+
 var check = function(){
     if(imgIndex===8 ){
         controlRight.classList.add('hiden')
@@ -29,8 +27,8 @@ var check = function(){
         controlLeft.classList.remove('hiden')
     }
 }
+
 var nextByKeyBoard = function(){
-    input.focus()
     input.addEventListener('keydown',function(e){
         switch(e.which){
             case 39:
@@ -47,6 +45,9 @@ var nextByKeyBoard = function(){
                     check()
                 }
                 break;
+            case 27:
+                view.classList.remove('show')
+                break;
         }
     })
 }
@@ -54,12 +55,15 @@ var nextByKeyBoard = function(){
 var show = function(){
     view.className='view show'
     imgSrc.src = 'img'+imgIndex+'.jpeg'
+    input.focus()
     check()
-    nextByKeyBoard()
 }
+nextByKeyBoard()
+
 close.addEventListener('click',function(){
     view.classList.remove('show')
 })
+
 controlRight.addEventListener('click',function(){
     imgIndex++
     show()
@@ -68,10 +72,13 @@ controlLeft.addEventListener('click',function(){
     imgIndex--
     show()
 })
-document.addEventListener('keydown',function(e){
-    switch(e.which){
-        case 27:
-            view.classList.remove('show')
-            break
+
+view.addEventListener('click',function(e){
+    if(e.currentTarget==e.target){
+        view.classList.remove('show')
     }
+})
+
+imgSrc.addEventListener('click',function(){
+    input.focus()
 })
