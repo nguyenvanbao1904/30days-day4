@@ -4,6 +4,7 @@ var controlRight = document.querySelector('.control-right')
 var controlLeft = document.querySelector('.control-left')
 var view = document.querySelector('.view')
 var imgSrc = document.querySelector('.view-body img')
+var input = document.querySelector('.hello')
 
 var imgIndex = 0
 
@@ -17,12 +18,7 @@ if(imgIndex===8){
     controlRight.className='hiden'
 }
 var check = function(){
-    
-}
-var show = function(){
-    view.className='view show'
-    imgSrc.src = 'img'+imgIndex+'.jpeg'
-    if(imgIndex===8){
+    if(imgIndex===8 ){
         controlRight.classList.add('hiden')
     } else{
         controlRight.classList.remove('hiden')
@@ -32,6 +28,34 @@ var show = function(){
     } else{
         controlLeft.classList.remove('hiden')
     }
+}
+var nextByKeyBoard = function(){
+    input.focus()
+    input.addEventListener('keydown',function(e){
+        switch(e.which){
+            case 39:
+                if(imgIndex < 8){
+                    imgIndex++
+                    imgSrc.src = 'img'+imgIndex+'.jpeg'
+                    check()
+                }
+                break;
+            case 37:
+                if(imgIndex > 1){
+                    imgIndex--
+                    imgSrc.src = 'img'+imgIndex+'.jpeg'
+                    check()
+                }
+                break;
+        }
+    })
+}
+
+var show = function(){
+    view.className='view show'
+    imgSrc.src = 'img'+imgIndex+'.jpeg'
+    check()
+    nextByKeyBoard()
 }
 close.addEventListener('click',function(){
     view.classList.remove('show')
