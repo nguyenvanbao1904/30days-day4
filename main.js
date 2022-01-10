@@ -16,7 +16,7 @@ images.forEach(function(img,index){
 })
 
 var check = function(){
-    if(imgIndex===8 ){
+    if(imgIndex===images.length ){
         controlRight.classList.add('hiden')
     } else{
         controlRight.classList.remove('hiden')
@@ -32,7 +32,7 @@ var nextByKeyBoard = function(){
     input.addEventListener('keydown',function(e){
         switch(e.which){
             case 39:
-                if(imgIndex < 8){
+                if(imgIndex < images.length){
                     imgIndex++
                     imgSrc.src = 'img'+imgIndex+'.jpeg'
                     check()

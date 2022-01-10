@@ -84,3 +84,8 @@ img{
     height: 0px;
     opacity: 0;
 }
+@media (max-width:1024px){
+    .hello{
+        display: none;
+    }
+}
