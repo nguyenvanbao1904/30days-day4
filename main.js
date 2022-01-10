@@ -28,21 +28,33 @@ var check = function(){
     }
 }
 
+var imgLoop = function(){
+    if(imgIndex===images.length){
+        imgIndex=1
+        imgSrc.src = 'img'+imgIndex+'.jpeg'
+    } else if(imgIndex===1){
+        imgIndex=images.length
+        imgSrc.src = 'img'+imgIndex+'.jpeg'
+    }
+}
+
 var nextByKeyBoard = function(){
     input.addEventListener('keydown',function(e){
         switch(e.which){
             case 39:
-                if(imgIndex < images.length){
+                if(imgIndex === images.length){
+                    imgLoop()
+                } else{
                     imgIndex++
                     imgSrc.src = 'img'+imgIndex+'.jpeg'
-                    check()
                 }
                 break;
             case 37:
-                if(imgIndex > 1){
+                if(imgIndex ===1){
+                    imgLoop()
+                } else{
                     imgIndex--
                     imgSrc.src = 'img'+imgIndex+'.jpeg'
-                    check()
                 }
                 break;
             case 27:
