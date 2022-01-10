@@ -15,19 +15,6 @@ images.forEach(function(img,index){
     })
 })
 
-var check = function(){
-    if(imgIndex===images.length ){
-        controlRight.classList.add('hiden')
-    } else{
-        controlRight.classList.remove('hiden')
-    }
-    if(imgIndex===1){
-        controlLeft.classList.add('hiden')
-    } else{
-        controlLeft.classList.remove('hiden')
-    }
-}
-
 var imgLoop = function(){
     if(imgIndex===images.length){
         imgIndex=1
@@ -68,7 +55,6 @@ var show = function(){
     view.className='view show'
     imgSrc.src = 'img'+imgIndex+'.jpeg'
     input.focus()
-    check()
 }
 nextByKeyBoard()
 
@@ -77,12 +63,20 @@ close.addEventListener('click',function(){
 })
 
 controlRight.addEventListener('click',function(){
-    imgIndex++
-    show()
+    if(imgIndex === images.length){
+        imgLoop()
+    } else{ 
+        imgIndex++
+        show()
+    }
 })
 controlLeft.addEventListener('click',function(){
-    imgIndex--
-    show()
+    if(imgIndex === 1){
+        imgLoop()
+    } else{ 
+        imgIndex--
+        show()
+    }
 })
 
 view.addEventListener('click',function(e){
